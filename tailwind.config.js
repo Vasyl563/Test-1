@@ -13,12 +13,13 @@ module.exports = {
     "./nuxt.config.{js,ts}",
   ],
   theme: {
-    colors: {
-      black: "#000",
-      white: "#fff",
-      transparent: "transparent",
+    extend: {
+      colors: {
+        black: "#000",
+        white: "#fff",
+        transparent: "transparent",
+      },
     },
-    extend: {},
   },
   plugins: [],
 };

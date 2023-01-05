@@ -1,5 +1,5 @@
 <template>
-  <div class="text-red">FOOTER</div>
+  <div>FOOTER fds</div>
 </template>
 
 <script setup></script>

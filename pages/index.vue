@@ -1,11 +1,9 @@
 <template>
-  <div>DEFAULT</div>
+  <div>
+    DEFAULT
+  </div>
 </template>
 
-<script setup>
+<script setup lang="ts"></script>
 
-</script>
-
-<style scoped>
-
-</style>
+<style scoped></style>
