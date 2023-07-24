@@ -1,7 +1,7 @@
 <template>
-  <header class="bg-white shadow h-16 flex justify-between items-stretch text-2xl pr-10">
+  <header class="bg-white shadow-xl h-16 flex justify-between items-stretch text-2xl pr-10">
     <nuxt-link
-      to="/Home"
+      to="/"
       class="inline-flex items-center h-full px-10 text-orange-500 font-bold"
     >
       Home

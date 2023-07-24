@@ -1,19 +1,20 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+// eslint-disable-next-line no-undef
+// @ts-ignore
 export default defineNuxtConfig({
-  css: ["@/assets/scss/main.scss"],
   app: {
     head: {
       title: "TEMPLATE",
       meta: [
-        { charset: "utf-8" },
-        { name: "viewport", content: "width=device-width, initial-scale=1" },
-        { hid: "title", name: "title", content: "TEMPLATE" },
+        {charset: "utf-8"},
+        {name: "viewport", content: "width=device-width, initial-scale=1"},
+        {hid: "title", name: "title", content: "TEMPLATE"},
         {
           hid: "description",
           name: "description",
           content: "DESCRIPTION HERE",
         },
-        { hid: "og:title", property: "og:title", content: "TEMPLATE" },
+        {hid: "og:title", property: "og:title", content: "TEMPLATE"},
         {
           hid: "og:description",
           property: "og:description",
@@ -31,17 +32,33 @@ export default defineNuxtConfig({
           content: "https://www.air-tv.net/",
         },
       ],
-      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.png" }],
+
+      link: [
+        // eslint-disable-next-line max-len
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap'
+        },
+        {
+          rel: 'icon',
+          href: '/favicon.ico'
+        }
+      ],
     },
   },
+  components: {
+    global: true,
+    dirs: ['~/components/shared']
+  },
+  css: ["@/assets/scss/main.scss"],
   modules: [
     "@nuxtjs/tailwindcss",
     "@pinia/nuxt",
     "nuxt-icon",
     "nuxt-icons",
-    "@nuxtjs/i18n",
   ],
   tailwindcss: {
     cssPath: "~/assets/scss/tailwind.scss",
   },
+
 });

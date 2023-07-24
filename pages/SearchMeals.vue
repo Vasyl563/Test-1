@@ -1,58 +1,56 @@
 <template>
-  <Navbar />
-  <div class="p-8 pb-0">
-    <h1 class="text-4xl font-bold mb-4 text-orange-500">
-      Ingredients
-    </h1>
-  </div>
-  <div class="px-8">
-    <input
-      v-model="keyword"
-      type="text"
-      class="rounded border-2 bg-white border-gray-200 focus:ring-orange-500 focus:border-orange-500 mb-3 w-full"
-      placeholder="Search for Ingredients"
-    >
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-      <a
-        v-for="ingredient of computedIngredients"
-        :key="ingredient.idIngredient"
-        href="#"
-        class="block bg-white rounded p-3 mb-3 shadow"
-        @click.prevent="openIngredient(ingredient)"
-      />
+  <div>
+    <Navbar />
+    <div class="px-40">
+      <h1 class="text-5xl font-bold mb-7 text-orange-500 pt-10">
+        Search Meals by Name
+      </h1>
+      <input
+        v-model="mealsStore.searchQuery"
+        type="text"
+        placeholder="Search for meals"
+        class="rounded border-2 bg-white border-gray-300 focus:ring-orange-500 focus:border-orange-500 w-full py-5 mb-5 input-focus"
+        @input="searchMeals"
+      >
+      <div
+        v-if="mealsStore.searchedMeals.length > 0"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+      >
+        <div
+          v-for="meal in mealsStore.searchedMeals"
+          :key="meal.idMeal"
+          class="meal-card p-4 border rounded shadow hover:scale-105 transition-all"
+        >
+          <MealItem :meal="meal" />
+        </div>
+      </div>
+
+      <div v-else>
+        <p>No meals found.</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed } from "vue";
-import { onMounted, ref } from "vue";
-import { useRouter } from "@pinia/nuxt";
-import axiosClient from "~/axiosClient";
-import { useMainStore } from "~/store"; // Підставте свій шлях до вашого Pinia Store
+import { useMealStore } from '~/store';
+import MealItem from "~/components/MealItem.vue";
 
-const mainStore = useMainStore(); // Accessing the store instance
+const mealsStore = useMealStore();
 
-const router = useRouter();
-const keyword = ref("");
-const ingredients = ref([]);
-const computedIngredients = computed(() => {
-  if (!computedIngredients.value) return ingredients;
-  return ingredients.value.filter((i) =>
-    i.strIngredient.toLowerCase().includes(keyword.value.toLowerCase())
-  );
-});
-
-async function openIngredient(ingredient) {
-  mainStore.setIngredient(ingredient); // Використовуємо мутацію із стору
-  await router.push({
-    name: "MealsByIngredient",
-    params: { ingredient: ingredient.stIngredient },
-  });
+async function searchMeals() {
+  try {
+    await mealsStore.searchMeals(mealsStore.searchQuery);
+  } catch (error) {
+    console.error("Помилка при пошуку страв:", error);
+  }
 }
-
-onMounted(async () => {
-  const { data } = await axiosClient.get("list.php?i=list");
-  ingredients.value = data.meals;
-});
 </script>
+
+<style>
+.input-focus:focus {
+  outline: none;
+  border: 3px solid rgba(239, 68, 68, 0.5);
+  background-color: transparent;
+}
+</style>

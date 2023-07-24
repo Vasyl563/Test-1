@@ -1,28 +1,29 @@
 <template>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-5 px-8">
-    <MealItem
-      v-for="meal of meals"
-      :key="meal.idMeal"
-      :meal="meal"
-    />
-  </div>
-  <div
-    v-if="!meals.length"
-    class="flex justify-center text-gray-600 p-8"
-  >
-    There are no meals
+  <div class="meal-card">
+    <img
+      :src="meal.strMealThumb"
+      :alt="meal.strMeal"
+      class="meal-image"
+    >
+    <p class="meal-description">
+      {{ meal.strMeal }}
+    </p>
+    <a
+      :href="meal.strYoutube"
+      target="_blank"
+      class="meal-button"
+    >
+      Watch on YouTube
+    </a>
   </div>
 </template>
 
 <script setup>
-import MealItem from './MealItem.vue';
+import { defineProps } from "vue";
 
-// eslint-disable-next-line vue/no-setup-props-destructure
-const { meals } = defineProps({
-  meals: {
-    required: true,
-    type: Array,
-  }
-})
-
+const { meal } = defineProps(["meal"]);
 </script>
+
+<style>
+/* Стилізуйте компонент на ваш розсуд */
+</style>

@@ -1,9 +1,13 @@
 <template>
   <div>
-    DEFAULT
+    <Navbar />
+    <Home />
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup>
+import Navbar from "~/components/shared/Navbar.vue";
+import Home from "~/components/views/Home.vue";
 
-<style scoped></style>
+</script>
+

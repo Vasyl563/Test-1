@@ -1,49 +1,100 @@
 <template>
-  <div class="bg-white rounded-lg p-4">
-    <h1 class="text-xl font-semibold">
-      {{ food.strMeal }}
+  <Navbar />
+  <div
+    v-if="meal"
+    class="bg-white rounded-lg px-96 py-7"
+  >
+    <h1 class="text-4xl font-bold py-4 text-orange-500">
+      {{ meal.strMeal }}
     </h1>
-    <div class="mt-4">
+    <div class="mt-4 flex items-center justify-center">
       <img
-        :src="food.strMealThumb"
-        :alt="food.strMeal"
-        class="rounded-lg shadow-md w-full"
+        :src="meal.strMealThumb"
+        :alt="meal.strMeal"
+        class="rounded-lg shadow-md w-full "
       >
     </div>
-    <div class="mt-4">
-      <h2 class="text-lg font-semibold">
-        Ingredients:
-      </h2>
-      <ul class="mt-2">
-        <li
-          v-for="(ingredient, index) in ingredients"
-          :key="index"
+    <div class="grid grid-cols-1 sm:grid-cols-3 text-2xl py-10">
+      <div class="text-2xl">
+        <strong class="font-bold text-3xl">
+          Category:
+        </strong> {{ meal.strCategory }}
+      </div>
+      <div class="text-2xl">
+        <strong class="font-bold text-3xl">
+          Area:
+        </strong> {{ meal.strArea }}
+      </div>
+      <div>
+        <strong class="font-bold text-3xl">
+          Tags:
+        </strong> {{ meal.strTags }}
+      </div>
+    </div>
+
+    <div class="my-3 text-2xl">
+      {{ meal.strInstructions }}
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2">
+      <div class="text-2xl">
+        <h2 class="text-3xl font-semibold mb-2">
+          Ingredients
+        </h2>
+        <ul>
+          <template v-for="(el, ind) of new Array(20)">
+            <li v-if="meal[`strIngredient${ind + 1}`]">
+              {{ ind + 1 }}. {{ meal[`strIngredient${ind + 1}`] }}
+            </li>
+          </template>
+        </ul>
+      </div>
+      <div class="text-2xl">
+        <h2 class="text-3xl font-semibold mb-2">
+          Measures
+        </h2>
+        <ul>
+          <template v-for="(el, ind) of new Array(20)">
+            <li v-if="meal[`strMeasure${ind + 1}`]">
+              {{ ind + 1 }}. {{ meal[`strMeasure${ind + 1}`] }}
+            </li>
+          </template>
+        </ul>
+      </div>
+      <div class="my-10  text-2xl">
+        <YouTubeButton :href="meal.strYoutube" />
+        <nuxt-link
+          :href="meal.strSource"
+          target="_blank"
+          class="ml-3 px-3 py-2 rounded border-2 border-transparent text-indigo-600 transition-colors"
         >
-          {{ ingredient }}
-        </li>
-      </ul>
+          View Original Source
+        </nuxt-link>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
+import { useRoute } from '#app';
 const route = useRoute()
 
-console.log(route.params)
-const food = ref(null);
-const mealId = 52772; // The meal ID you want to fetch
+const meal = ref(null);
+
+// eslint-disable-next-line no-unused-vars
 const ingredients = computed(() => {
-  if (!food.value) return [];
-  return Object.entries(food.value)
+  if (!meal.value) return {};
+  return Object.entries(meal.value)
     .filter(([key, value]) => key.includes('Ingredient') && value)
   // eslint-disable-next-line no-unused-vars
     .map(([key, value]) => value);
 });
 
-(async () => {
-  const response = await fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=' + mealId);
+onMounted(async () => {
+  const response = await fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=' + route.params.id);
   const data = await response.json();
-  food.value = data.meals[0];
-})();
+  meal.value = data.meals[0];
+})
+
 </script>
