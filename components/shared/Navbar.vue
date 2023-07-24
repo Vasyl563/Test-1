@@ -19,12 +19,12 @@
       >
         Meals By Letter
       </nuxt-link>
-      <nuxt-link
-        to="/MealsByIngredients"
-        class="inline-flex items-center px-2 h-full transition-colors hover:bg-orange-500 hover:text-white"
-      >
-        Meals By Ingredients
-      </nuxt-link>
+      <!--      <nuxt-link-->
+      <!--        to="/MealsByIngredients"-->
+      <!--        class="inline-flex items-center px-2 h-full transition-colors hover:bg-orange-500 hover:text-white"-->
+      <!--      >-->
+      <!--        Meals By Ingredients-->
+      <!--      </nuxt-link>-->
     </div>
   </header>
 </template>
