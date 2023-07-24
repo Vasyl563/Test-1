@@ -11,4 +11,3 @@
 <script setup>
 const { ingredientName } = props;
 </script>
-
