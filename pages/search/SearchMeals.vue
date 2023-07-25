@@ -34,7 +34,7 @@
 
 <script setup>
 import { useMealStore } from '~/store';
-import MealItem from "~/components/MealItem.vue";
+import MealItem from "~/components/views/MealItem.vue";
 
 const mealsStore = useMealStore();
 

@@ -27,11 +27,6 @@ export const useMealStore = defineStore('Meal', {
         console.error('Error searching meals by letter:', error);
         this.mealsByLetter = [];
       }
-    },
-  },
-  mutations: {
-    setMealsByIngredient(meals) {
-      this.mealsByIngredient = meals || [];
-    },
-  },
+    }
+  }
 });

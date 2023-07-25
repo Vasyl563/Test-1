@@ -18,7 +18,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import axios from "axios";
-import MealItem from "~/components/MealItem.vue";
+import MealItem from "~/components/views/MealItem.vue";
 
 const meals = ref([]);
 
