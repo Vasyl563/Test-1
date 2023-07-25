@@ -44,7 +44,7 @@ const meals = ref([]);
 
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
 
-async function searchMealsByLetter(letter) {
+const searchMealsByLetter = async(letter) =>{
   try {
     await mealsStore.searchMealsByLetter(letter);
     meals.value = mealsStore.mealsByLetter;

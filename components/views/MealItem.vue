@@ -29,7 +29,7 @@ import { defineProps, computed } from 'vue';
 
 const props = defineProps(['meal']);
 
-function truncateWords(text, limit) {
+const truncateWords = (text, limit) => {
   const words = text?.split(' ');
   if (words.length <= limit) {
     return text;

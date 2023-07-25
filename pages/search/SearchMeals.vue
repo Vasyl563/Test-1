@@ -38,13 +38,14 @@ import MealItem from "~/components/MealItem.vue";
 
 const mealsStore = useMealStore();
 
-async function searchMeals() {
-  try {
-    await mealsStore.searchMeals(mealsStore.searchQuery);
-  } catch (error) {
-    console.error("Помилка при пошуку страв:", error);
-  }
+const searchMeals = () => {
+  mealsStore.searchMeals(mealsStore.searchQuery)
+    .catch(error => {
+      console.error("Помилка при пошуку страв:", error);
+    });
 }
+
+
 </script>
 
 <style>

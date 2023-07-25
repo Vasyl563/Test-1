@@ -28,24 +28,10 @@ export const useMealStore = defineStore('Meal', {
         this.mealsByLetter = [];
       }
     },
-
-    actions: {
-      async searchMealsByIngredient(ingredient) {
-        try {
-          const {data} = await axiosClient.get(
-            `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`
-          );
-          this.setMealsByIngredient(data.meals || []);
-        } catch (error) {
-          console.error('Error searching meals by ingredient:', error);
-          this.setMealsByIngredient([]);
-        }
-      },
+  },
+  mutations: {
+    setMealsByIngredient(meals) {
+      this.mealsByIngredient = meals || [];
     },
-    mutations: {
-      setMealsByIngredient(meals) {
-        this.mealsByIngredient = meals || [];
-      },
-    },
-  }
+  },
 });
