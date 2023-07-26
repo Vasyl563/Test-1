@@ -1,9 +1,9 @@
 <template>
-  <div class="px-44 py-10">
+  <div class="px-44 py-10 max-[1400px]:px-32 max-[1200px]:px-8 max-[1000px]:py-5">
     <h2 class="text-5xl font-bold mb-7 text-orange-500">
       Random Meals
     </h2>
-    <div class="grid grid-cols-3">
+    <div class="grid grid-cols-3 max-[850px]:grid-cols-1">
       <div
         v-for="meal in meals"
         :key="meal.idMeal"

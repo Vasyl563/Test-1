@@ -1,14 +1,14 @@
 <template>
   <nuxt-link
     :to="`/meal/${meal.idMeal}`"
-    class="flex flex-col items-center bg-white shadow-xl rounded-xl hover:scale-105 transition-all m-5"
+    class="flex flex-col items-center bg-white shadow-xl rounded-xl hover:scale-105 transition-all m-5 max-[1270px]:mr-1"
   >
     <img
       :src="meal.strMealThumb"
       :alt="meal.strMeal"
       class="rounded-t-xl w-full h-[20rem] object-cover mb-2"
     >
-    <div class="">
+    <div class="flex flex-col">
       <h1 class="font-bold text-2xl">
         {{ meal.strMeal }}
       </h1>
@@ -17,6 +17,7 @@
       {{ truncatedInstructions }}
     </p>
     <YouTubeButton
+      class=""
       :to="meal.strYoutube"
     >
       Watch on YouTube
