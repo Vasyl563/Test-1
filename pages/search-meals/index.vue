@@ -3,13 +3,13 @@
     <Navbar />
     <div class="px-40 max-[1400px]:px-32 max-[1200px]:px-8">
       <h1 class="text-5xl font-bold mb-7 text-orange-500 pt-10 max-[800px]:text-4xl">
-        Search Meals by Name
+        {{ $t('searchMeals.searchMealsByName') }}
       </h1>
       <input
         v-model="mealsStore.searchQuery"
         type="text"
         placeholder="Search for meals"
-        class="rounded border-2 bg-white border-gray-300 focus:ring-orange-500 focus:border-orange-500 w-full py-5 mb-5 input-focus"
+        class="rounded pl-3 border-2 bg-white border-gray-300 focus:ring-orange-500 focus:border-orange-500 w-full py-5 mb-5 input-focus"
         @input="searchMeals"
       >
       <div
@@ -35,6 +35,7 @@
 <script setup>
 import { useMealStore } from '~/store';
 import MealItem from "~/components/views/MealItem.vue";
+import { onMounted } from "vue";
 
 const mealsStore = useMealStore();
 
@@ -45,7 +46,7 @@ const searchMeals = () => {
     });
 }
 
-
+onMounted(searchMeals)
 </script>
 
 <style>

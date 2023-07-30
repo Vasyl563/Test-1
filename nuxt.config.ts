@@ -1,6 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 // eslint-disable-next-line no-undef
 // @ts-ignore
+// eslint-disable-next-line no-undef
+
 export default defineNuxtConfig({
   app: {
     head: {
@@ -56,9 +58,21 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "nuxt-icon",
     "nuxt-icons",
+    "@nuxtjs/i18n",
   ],
   tailwindcss: {
     cssPath: "~/assets/scss/tailwind.scss",
+  },
+  i18n: {
+    locales: [
+      { code: 'en', iso: 'en', file: 'en.json' },
+      { code: 'ua', iso: 'ua', file: 'ua.json' },
+    ],
+    defaultLocale: 'en',
+    detectBrowserLanguage: false,
+    strategy: 'no_prefix',
+    lazy: true,
+    langDir: 'locales/',
   },
 
 });

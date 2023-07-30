@@ -4,21 +4,48 @@
       to="/"
       class="inline-flex items-center h-full px-10 text-orange-500 font-bold max-[530px]:px-2"
     >
-      Home
+      {{ $t('navbar.home') }}
     </nuxt-link>
     <div class="flex items-center gap-1">
       <nuxt-link
-        to="/SearchMeals"
+        to="/search-meals"
         class="inline-flex items-center px-2 h-full transition-colors hover:bg-orange-500 hover:text-white max-[450px]:px-1"
       >
-        Search Meals
+        {{ $t('navbar.search') }}
       </nuxt-link>
       <nuxt-link
-        to="/MealsByLetter"
+        to="/meals-by-letter"
         class="inline-flex items-center px-2 h-full transition-colors hover:bg-orange-500 hover:text-white max-[450px]:px-1"
       >
-        Meals By Letter
+        {{ $t('navbar.mealsByLetter') }}
       </nuxt-link>
+      <div class="flex">
+        <button
+          class="inline-flex items-center mr-2 px-2 h-full transition-colors hover:bg-orange-500 hover:text-white max-[450px]:px-1"
+          @click="changeLocale('en')"
+        >
+          en
+        </button>
+        <button
+          class="inline-flex items-center px-2 h-full transition-colors hover:bg-orange-500 hover:text-white max-[450px]:px-1"
+          @click="changeLocale('ua')"
+        >
+          ua
+        </button>
+      </div>
     </div>
   </header>
 </template>
+
+<script setup>
+import { useI18n } from 'vue-i18n';
+const { locale } = useI18n();
+const changeLocale = (code) => {
+  locale.value = code;
+};
+</script>
+
+
+
+
+

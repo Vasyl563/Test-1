@@ -5,6 +5,7 @@ export const useMealStore = defineStore('Meal', {
   state: () => ({
     searchedMeals: [],
     mealsByLetter: [],
+    searchQuery: 'ta'
   }),
   actions: {
     async searchMeals(keyword) {

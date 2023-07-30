@@ -2,7 +2,7 @@
   <Navbar />
   <div
     v-if="meal"
-    class="bg-white rounded-lg px-96 py-7"
+    class="bg-white rounded-lg px-96 py-7 max-[1400px]:px-60 max-[1250px]:px-40 max-[1000px]:px-16 max-[800px]:px-8 max-[800px]:py-5 max-[450px]:px-4 "
   >
     <h1 class="text-4xl font-bold py-4 text-orange-500">
       {{ meal.strMeal }}
